@@ -1,0 +1,11 @@
+<div class="filed">
+
+
+
+
+    <div class="card-stack">
+        <img *ngFor="let c of [1,2,3,4,5]; let i = index;"
+             [ngStyle]="{'right.px':i * 7}" 
+             src="/assets/playing_cards/card_cover.png" alt="">
+    </div>
+</div>

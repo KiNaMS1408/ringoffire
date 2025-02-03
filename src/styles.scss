@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+body{
+    margin: 0;
+}
+
+.golden-button {
+  transition: all 0.3s ease;
+    background: linear-gradient(to right, #facc15, #d97706);
+    color: white;
+    font-weight: bold;
+    font-size: xxx-large;
+    padding: 10px 20px;
+    border-radius: 16px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20vh;
+  }
+  .golden-button:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+  }
+  .golden-button:active {
+    background: linear-gradient(to right, #b45309, #f59e0b);
+  }
