@@ -2,7 +2,7 @@
     width: 100vw;
     height: 100vh;
     max-width: 100%;
-    background-size: contain;
+    background-size: cover;
     background-image: url('/assets/spoiled-wooden-boards.jpg');
     display: flex;
     justify-content: center;
@@ -15,4 +15,54 @@
         position: absolute;
         width: 120px;
     }
+}
+
+.top-card{
+    transition: all 0.125s ease;
+    cursor: pointer;
+
+    &:hover{
+        transform: scale(1.2) translate(-5px, 10px);
+    }
+}
+
+.played-card{
+    right: 25px;
+    transform: scale(1.2) translate(150px, -250px) rotate(-10deg);
+}
+
+.pick-card{
+    // transition: all 0.125s ease;
+    // cursor: pointer;
+    transform: scale(1.5) translate(-5px, 10px) rotate(30deg);
+    animation: pick-card-animation 1s ease-out forwards;
+}
+
+@keyframes pick-card-animation {
+    0% {
+        transform: scale(1) translate(-5px, 10px);
+    }
+    30% {
+        transform: scale(1.7) translate(-5px, 10px);
+    }
+    50% {
+        transform: scale(1.7) translate(-5px, 10px);
+    }
+    99% {
+        transform: scale(1.3) translate(150px, -250px) rotate(-8deg);
+    }
+    100% {
+        transform: scale(1.3) translate(150px, -250px) rotate(-10deg);
+    }
+}
+
+.player-position{
+    position: absolute;
+    right: 0;
+}
+
+.btn-add{
+    position: absolute;
+    right: 32px;
+    bottom: 32px;
 }
