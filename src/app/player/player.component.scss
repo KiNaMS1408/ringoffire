@@ -2,7 +2,7 @@
     width: 300px;
     display: flex;
     align-items: center;
-    background-color: orange;
+    background-color: rgb(192, 192, 192);
     border-radius: 52px 0 0 52px;
 
     span{
@@ -12,9 +12,13 @@
 
     img {
         background-color: rgb(255, 255, 255);
-        width: 100px;
-        height: 100px;
+        width: 70px;
+        height: 70px;
         object-fit: cover;
         border-radius: 50%;
     };
+}
+
+.player-active {
+    background-color: orange;
 }

@@ -32,8 +32,6 @@
 }
 
 .pick-card{
-    // transition: all 0.125s ease;
-    // cursor: pointer;
     transform: scale(1.5) translate(-5px, 10px) rotate(30deg);
     animation: pick-card-animation 1s ease-out forwards;
 }
@@ -65,4 +63,11 @@
     position: absolute;
     right: 32px;
     bottom: 32px;
+}
+
+.pin-bottom{
+    position: absolute;
+    bottom: 32px;
+    left: 100px;
+    right: 100px;
 }
