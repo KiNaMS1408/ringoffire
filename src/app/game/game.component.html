@@ -16,17 +16,17 @@
     <div class="card-stack">
         <!-- Card stack -->
         <img *ngFor="let c of [1,2,3,4]; let i = index;" [ngStyle]="{'right.px':i * 7}" 
-            src="/assets/playing_cards/card_cover.png" alt="">
+            src="assets/playing_cards/card_cover.png" alt="">
         <img (click)="takeCard()" class="top-card" style="right: 25px" 
-            src="/assets/playing_cards/card_cover.png" alt="">
+            src="assets/playing_cards/card_cover.png" alt="">
 
             <!-- stack for played cards -->
         <img *ngFor="let card of game.playedCards" class="played-card"  
-            src="/assets/playing_cards/{{ card }}" alt="">
+            src="assets/playing_cards/{{ card }}" alt="">
 
             <!-- Current card (Aniamtion) -->
         <img (click)="takeCard()" *ngIf="pickCardAnimation"  class="pick-card" style="right: 25px" 
-            src="/assets/playing_cards/{{ currentCard }}" alt="">
+            src="assets/playing_cards/{{ currentCard }}" alt="">
 
     </div>
 </div>
