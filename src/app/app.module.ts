@@ -20,6 +20,16 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { routes } from './app-routing.module';
+import { AngularFireModule } from '@angular/fire/compat';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB2CaCkIAZHXLymDN-0KvcUxZlbVlrAFwY",
+  authDomain: "ring-of-fire-c7f7e.firebaseapp.com",
+  projectId: "ring-of-fire-c7f7e",
+  storageBucket: "ring-of-fire-c7f7e.firebasestorage.app",
+  messagingSenderId: "964301947573",
+  appId: "1:964301947573:web:93c3059f9e9908a593b4fc"
+};
 
 @NgModule({
   declarations: [
@@ -39,7 +49,8 @@ import { routes } from './app-routing.module';
     MatDialogModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]

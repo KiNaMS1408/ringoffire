@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/models/game';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -14,15 +16,31 @@ export class GameComponent implements OnInit {
   game!: Game;
   gameOver = false;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute ,private firestore: AngularFirestore , public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.newGame();
+    this.route.params.subscribe((params) => {
+      console.log(params);
+      
+    })
+    this
+      .firestore
+      .collection('games')
+      .valueChanges()
+      .subscribe((game) => {
+        console.log('game update', game);
+        
+      })
   }
 
   newGame() {
     this.game = new Game();
+    // this.firestore
+    //   .collection('games')
+    //   .add(this.game.toJson())
   }
+
 
   takeCard() {
     if (this.game.stack.length == 0) {
