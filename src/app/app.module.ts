@@ -22,6 +22,7 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { routes } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire/compat';
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyB2CaCkIAZHXLymDN-0KvcUxZlbVlrAFwY",
   authDomain: "ring-of-fire-c7f7e.firebaseapp.com",
@@ -56,11 +57,3 @@ const firebaseConfig = {
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-// export const appConfig: ApplicationConfig = {
-//   providers: [provideRouter(routes), 
-//     provideFirebaseApp(() => initializeApp({"projectId":"ring-of-fire-c7f7e","appId":"1:964301947573:web:93c3059f9e9908a593b4fc","storageBucket":"ring-of-fire-c7f7e.firebasestorage.app","apiKey":"AIzaSyB2CaCkIAZHXLymDN-0KvcUxZlbVlrAFwY","authDomain":"ring-of-fire-c7f7e.firebaseapp.com","messagingSenderId":"964301947573"})),
-//     provideFirestore(() => getFirestore()),
-//     provideStorage(() => getStorage())]
-// };
-

@@ -1,4 +1,8 @@
 mat-card{
     background-color: aliceblue;
     padding: 1vh;
+    @media (max-width:720px) {
+        overflow: hidden;
+        min-height: 150px;
+    }
 }

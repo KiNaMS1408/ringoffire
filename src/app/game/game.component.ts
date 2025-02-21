@@ -11,68 +11,92 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
-  pickCardAnimation = false;
-  currentCard: string = '';
   game!: Game;
   gameOver = false;
+  paramsId: any;
+  gameData: any = null;
+  gameId: string | null = null;
 
-  constructor(private route: ActivatedRoute ,private firestore: AngularFirestore , public dialog: MatDialog) { }
+
+  constructor(private route: ActivatedRoute, private firestore: AngularFirestore,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    // ID from URL
+    this.gameId = this.route.snapshot.paramMap.get('id');
+
+    if (this.gameId) {
+      this.loadGame(this.gameId);
+    }
+
     this.newGame();
     this.route.params.subscribe((params) => {
-      console.log(params);
-      
-    })
-    this
-      .firestore
-      .collection('games')
-      .valueChanges()
-      .subscribe((game) => {
-        console.log('game update', game);
-        
-      })
+      this.paramsId = params['id'];
+
+      this
+        .firestore
+        .collection('games')
+        .doc(this.paramsId)
+        .valueChanges()
+        .subscribe((game: any) => {
+          console.log('game update', game);
+          this.game.currentPlayer = game.currentPlayer;
+          this.game.playedCards = game.playedCards;
+          this.game.players = game.players;
+          this.game.stack = game.stack;
+          this.game.pickCardAnimation = game.pickCardAnimation;
+          this.game.currentCard = game.currentCard;
+        });
+    });
+  }
+
+  loadGame(id: string) {
+    this.firestore.collection('games').doc(id).valueChanges().subscribe(game => {
+      this.gameData = game;
+    });
   }
 
   newGame() {
     this.game = new Game();
-    // this.firestore
-    //   .collection('games')
-    //   .add(this.game.toJson())
   }
-
 
   takeCard() {
     if (this.game.stack.length == 0) {
       this.gameOver = true;
-    } else 
-    if (!this.pickCardAnimation) {
-      this.currentCard = this.game.stack.pop() || '';
-      this.pickCardAnimation = true;
-      console.log('Curret Game Card is 34 ', this.currentCard);
-      
-      this.game.currentPlayer++;
-      this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
+    } else
+      if (!this.game.pickCardAnimation) {
+        this.game.currentCard = this.game.stack.pop() || '';
+        this.game.pickCardAnimation = true;
+        this.game.currentPlayer++;
+        this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
+        this.saveGame();
 
-      setTimeout(() => {
-        this.game.playedCards.push(this.currentCard);
-  
-        this.pickCardAnimation = false;
-      }, 1000);
-    }
+        setTimeout(() => {
+          this.game.playedCards.push(this.game.currentCard);
+          this.game.pickCardAnimation = false;
+          this.saveGame();
+        }, 1000);
+      }
   }
-  
+
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
-    dialogRef.afterClosed().subscribe((name:string) => {
+    dialogRef.afterClosed().subscribe((name: string) => {
       if (name && name.length > 0) {
-      this.game.players.push(name)
-      console.log('Game is 50 ', name  );
+        this.game.players.push(name)
+        this.saveGame();
       }
     });
   }
 
+  saveGame() {
+    this
+      .firestore
+      .collection('games')
+      .doc(this.paramsId)
+      .update(this.game.toJson());
+  }
 }
 
 
