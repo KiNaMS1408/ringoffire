@@ -15,39 +15,30 @@ export class GameInfoComponent implements OnInit, OnChanges {
     { title: 'Chicks', description: 'All girls drink.' },
     { title: 'Heaven', description: 'Put your hands up! The last player drinks!' },
     { title: 'Mate', description: 'Pick a mate. Your mate must always drink when you drink and the other way around.' },
-    { title: 'Thumbmaster', description: '' },
+    { title: 'Thumbmaster', description: 'last how placed the thumb on the table drinks' },
     { title: 'Men', description: 'All men drink.' },
-    { title: 'Quizmaster', description: '' },
+    { title: 'Quizmaster', description: 'Ask a question' },
     { title: 'Never have i ever...', description: 'Say something you never did. Everyone who did it has to drink.' },
     { title: 'Rule', description: 'Make a rule. Everyone needs to drink when he breaks the rule.' },
   ];
 
-  title:string = '';
-  description:string = '';
-  @Input()card:any = '';
+  title: string = '';
+  description: string = '';
+  @Input() card: any = '';
 
   constructor() { }
 
   ngOnInit(): void {
-    // console.log('Current card:', this.card);
   }
 
   ngOnChanges(): void {
     if (this.card) {
       let parts = this.card.split('_');
-  
-      // if (parts.length < 2) {
-      //   console.error('Game is 51:', this.card);
-      //   return;
-      // }
-      const cardNumber = parseInt(parts[1], 10); // Wandelt den zweiten Teil (die Zahl) in eine Ganzzahl um
-  
+
+      const cardNumber = parseInt(parts[1], 10); // transforming to full number
+
       this.title = this.cardAction[cardNumber - 1]?.title || 'Unbekannte Karte';
       this.description = this.cardAction[cardNumber - 1]?.description || 'Keine Beschreibung verfügbar';
-      
-      // console.log('Karte aktualisiert:', this.title, this.description);
     }
   }
-  
-
 }

@@ -28,12 +28,12 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 @media (min-width: 720px) {
-  .hide.desktop {
+  .hide-desktop {
     display: none;
   }
 }
 @media (max-width: 720px) {
-  .hide.mobil {
+  .hide-mobil {
     display: none;
   }
 }

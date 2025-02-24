@@ -1,17 +1,14 @@
 .player {
-    overflow: hidden;
-    width: 300px;
+    width: 100px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     background-color: rgb(192, 192, 192);
-    border-radius: 52px 0 0 52px;
+    border-radius: 0 0 52px 52px;
 
     span{
-        font-size: 24px;
-        margin-left: 16px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
+        font-size: 14px;
+        text-align: center;
     }
 
     img {
@@ -20,9 +17,14 @@
         height: 50px;
         object-fit: cover;
         border-radius: 50%;
+        margin-top: 8px;
     };
 }
 
 .player-active {
     background-color: orange;
+}
+
+.scroll-container{
+    overflow: auto;
 }
